@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>5.1 redis容器化 · GitBook</title>
+        <title>5.2 rabbitmq容器化 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="rabbitmq.html" />
+    <link rel="next" href="mongodb.html" />
     
+    
+    <link rel="prev" href="redis.html" />
     
 
     </head>
@@ -230,7 +232,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.6.1" data-path="redis.html">
+        <li class="chapter " data-level="1.6.1" data-path="redis.html">
             
                 <a href="redis.html">
             
@@ -243,7 +245,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="rabbitmq.html">
+        <li class="chapter active" data-level="1.6.2" data-path="rabbitmq.html">
             
                 <a href="rabbitmq.html">
             
@@ -317,7 +319,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >5.1 redis容器化</a>
+        <a href=".." >5.2 rabbitmq容器化</a>
     </h1>
 </div>
 
@@ -332,73 +334,83 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="51-redis&#x5BB9;&#x5668;&#x5316;">5.1 redis&#x5BB9;&#x5668;&#x5316;</h1>
-<p><strong>1.&#x5355;&#x673A;&#x90E8;&#x7F72;</strong></p>
-<li>docker&#x542F;&#x52A8;</li>
-
-<pre><code class="lang-shell">docker run --name redis-alone -d -p 6379:6379 192.168.14.66/public/redis:4.0.9
+                                <h1 id="52-rabbitmq&#x5BB9;&#x5668;&#x5316;">5.2 rabbitmq&#x5BB9;&#x5668;&#x5316;</h1>
+<p><strong>docker&#x90E8;&#x7F72;</strong></p>
+<pre><code class="lang-shell">docker run -d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin  -p 8080:15672 -p 5672:5672 rabbitmq:3-management
 </code></pre>
-<li> k8s&#x542F;&#x52A8; </li>
-
+<p><strong>k8s&#x90E8;&#x7F72;</strong></p>
 <pre><code class="lang-yaml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">apiVersion:</span> v1
-<span class="hljs-attr">kind:</span> Service
-<span class="hljs-attr">metadata:</span>
-<span class="hljs-attr">  name:</span> redis-service
-<span class="hljs-attr">  labels:</span>
-<span class="hljs-attr">    app:</span> redis-alone
-<span class="hljs-attr">spec:</span>
-<span class="hljs-attr">  type:</span> NodePort
-<span class="hljs-attr">  ports:</span>
-<span class="hljs-attr">    - port:</span> <span class="hljs-number">6379</span>
-<span class="hljs-attr">      nodePort:</span> <span class="hljs-number">6379</span>
-<span class="hljs-attr">  selector:</span>
-<span class="hljs-attr">    app:</span> redis-alone
-<span class="hljs-comment">#   clusterIP: None</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">kind:</span> PersistentVolumeClaim
-<span class="hljs-attr">apiVersion:</span> v1
-<span class="hljs-attr">metadata:</span>
-<span class="hljs-attr">  name:</span> redis-lv-claim
-<span class="hljs-attr">  labels:</span>
-<span class="hljs-attr">    app:</span> redis-alone
-<span class="hljs-attr">  annotations:</span>
-    volume.beta.kubernetes.io/storage-class: <span class="hljs-string">&quot;managed-nfs-storage&quot;</span>
-<span class="hljs-attr">spec:</span>
-<span class="hljs-attr">  accessModes:</span>
-<span class="hljs-bullet">    -</span> ReadWriteMany
-<span class="hljs-attr">  resources:</span>
-<span class="hljs-attr">    requests:</span>
-<span class="hljs-attr">      storage:</span> <span class="hljs-number">2</span>Gi
-<span class="hljs-meta">---</span>
 <span class="hljs-attr">apiVersion:</span> extensions/v1beta1
 <span class="hljs-attr">kind:</span> Deployment
 <span class="hljs-attr">metadata:</span>
-<span class="hljs-attr">  name:</span> redis-alone
+<span class="hljs-attr">  name:</span> rabbitmq-alone
 <span class="hljs-attr">spec:</span>
 <span class="hljs-attr">  replicas:</span> <span class="hljs-number">1</span>
 <span class="hljs-attr">  template:</span>
 <span class="hljs-attr">    metadata:</span>
 <span class="hljs-attr">      labels:</span>
-<span class="hljs-attr">        app:</span> redis-alone
+<span class="hljs-attr">        app:</span> rabbitmq-alone
 <span class="hljs-attr">    spec:</span>
-<span class="hljs-attr">      hostname:</span> redis
+<span class="hljs-attr">      hostname:</span> rabbitmq
 <span class="hljs-attr">      containers:</span>
-<span class="hljs-attr">      - name:</span> redis-alone
-<span class="hljs-attr">        image:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.14</span><span class="hljs-number">.66</span>/public/redis:<span class="hljs-number">4.0</span><span class="hljs-number">.9</span>
+<span class="hljs-attr">      - name:</span> rabbitmq-alone
+<span class="hljs-attr">        image:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.14</span><span class="hljs-number">.66</span>/public/rabbitmq:<span class="hljs-number">3</span>-management
 <span class="hljs-attr">        imagePullPolicy:</span> IfNotPresent
-        <span class="hljs-comment"># command: [&quot;/usr/local/bin/redis-server&quot;]</span>
-        <span class="hljs-comment"># args: [&quot;/redis-conf/redis.conf&quot;]</span>
+        <span class="hljs-comment"># command: [&quot;/usr/local/bin/rabbitmq-server&quot;]</span>
+        <span class="hljs-comment"># args: [&quot;/rabbitmq-conf/rabbitmq.conf&quot;]</span>
 <span class="hljs-attr">        ports:</span>
-<span class="hljs-attr">        - containerPort:</span> <span class="hljs-number">6379</span>
-<span class="hljs-attr">        volumeMounts:</span>
-<span class="hljs-attr">        - name:</span> redis-nfs-storage
-<span class="hljs-attr">          mountPath:</span> /data
-<span class="hljs-attr">      volumes:</span>
-<span class="hljs-attr">      - name:</span> redis-nfs-storage
-<span class="hljs-attr">        persistentVolumeClaim:</span>
-<span class="hljs-attr">          claimName:</span> redis-lv-claim
+<span class="hljs-attr">        - containerPort:</span> <span class="hljs-number">5672</span>
+<span class="hljs-attr">          name:</span> tcp
+<span class="hljs-attr">        - containerPort:</span> <span class="hljs-number">15672</span>
+<span class="hljs-attr">          name:</span> http
+<span class="hljs-attr">        env:</span>
+<span class="hljs-attr">        - name:</span> RABBITMQ_DEFAULT_USER
+<span class="hljs-attr">          value:</span> admin
+<span class="hljs-attr">        - name:</span> RABBITMQ_DEFAULT_PASS
+<span class="hljs-attr">          value:</span> admin
+        <span class="hljs-comment"># volumeMounts:</span>
+        <span class="hljs-comment"># - name: rabbitmq-nfs-storage</span>
+          <span class="hljs-comment"># mountPath: /data</span>
+      <span class="hljs-comment"># volumes:</span>
+      <span class="hljs-comment"># - name: rabbitmq-nfs-storage</span>
+        <span class="hljs-comment"># persistentVolumeClaim:</span>
+          <span class="hljs-comment"># claimName: rabbitmq-lv-claim</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Service
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> rabbitmq-service
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> rabbitmq-alone
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  type:</span> NodePort
+<span class="hljs-attr">  ports:</span>
+<span class="hljs-attr">  - port:</span> <span class="hljs-number">15672</span>
+<span class="hljs-attr">    name:</span> http
+<span class="hljs-attr">    nodePort:</span> <span class="hljs-number">15672</span>
+<span class="hljs-attr">  - port:</span> <span class="hljs-number">5672</span>
+<span class="hljs-attr">    name:</span> tcp
+<span class="hljs-attr">    nodePort:</span> <span class="hljs-number">5672</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    app:</span> rabbitmq-alone
+<span class="hljs-comment">#   clusterIP: None</span>
+<span class="hljs-comment"># ---</span>
+<span class="hljs-comment"># kind: PersistentVolumeClaim</span>
+<span class="hljs-comment"># apiVersion: v1</span>
+<span class="hljs-comment"># metadata:</span>
+  <span class="hljs-comment"># name: rabbitmq-lv-claim</span>
+  <span class="hljs-comment"># labels:</span>
+    <span class="hljs-comment"># app: rabbitmq-alone</span>
+  <span class="hljs-comment"># annotations:</span>
+    <span class="hljs-comment"># volume.beta.kubernetes.io/storage-class: &quot;managed-nfs-storage&quot;</span>
+<span class="hljs-comment"># spec:</span>
+  <span class="hljs-comment"># accessModes:</span>
+    <span class="hljs-comment"># - ReadWriteMany</span>
+  <span class="hljs-comment"># resources:</span>
+    <span class="hljs-comment"># requests:</span>
+      <span class="hljs-comment"># storage: 2Gi</span>
 </code></pre>
+<p><strong>docker&#x90E8;&#x7F72;</strong></p>
 
                                 
                                 </section>
@@ -426,8 +438,12 @@
 
             
                 
+                <a href="redis.html" class="navigation navigation-prev " aria-label="Previous page: 5.1 redis容器化">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="rabbitmq.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 5.2 rabbitmq容器化">
+                
+                <a href="mongodb.html" class="navigation navigation-next " aria-label="Next page: 5.3 mongodb容器化">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -438,7 +454,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5.1 redis容器化","level":"1.6.1","depth":2,"next":{"title":"5.2 rabbitmq容器化","level":"1.6.2","depth":2,"path":"chapter5/rabbitmq.md","ref":"chapter5/rabbitmq.md","articles":[]},"previous":{"title":"[5. 容器公共服务]","level":"1.6","depth":1,"ref":"","articles":[{"title":"5.1 redis容器化","level":"1.6.1","depth":2,"path":"chapter5/redis.md","ref":"chapter5/redis.md","articles":[]},{"title":"5.2 rabbitmq容器化","level":"1.6.2","depth":2,"path":"chapter5/rabbitmq.md","ref":"chapter5/rabbitmq.md","articles":[]},{"title":"5.3 mongodb容器化","level":"1.6.3","depth":2,"path":"chapter5/mongodb.md","ref":"chapter5/mongodb.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/redis.md","mtime":"2018-05-18T05:28:02.890Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-18T09:35:29.579Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5.2 rabbitmq容器化","level":"1.6.2","depth":2,"next":{"title":"5.3 mongodb容器化","level":"1.6.3","depth":2,"path":"chapter5/mongodb.md","ref":"chapter5/mongodb.md","articles":[]},"previous":{"title":"5.1 redis容器化","level":"1.6.1","depth":2,"path":"chapter5/redis.md","ref":"chapter5/redis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/rabbitmq.md","mtime":"2018-05-18T08:55:32.814Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-18T09:35:29.579Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
