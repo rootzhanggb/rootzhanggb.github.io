@@ -8,7 +8,7 @@ docker run -d --name some-mongo -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INI
 ```
 **k8s部署**
 ```yaml
-测试是否可以修改
+测试
 ```
 
 
