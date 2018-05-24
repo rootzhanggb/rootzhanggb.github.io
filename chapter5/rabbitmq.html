@@ -1,14 +1,14 @@
 
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>5.2 rabbitmq容器化 · GitBook</title>
+        <title>5.2 rabbitmq容器化 · zgb Handbook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
-        
+        <meta name="author" content="zgb">
         
         
     
@@ -71,7 +71,7 @@
         
             
 <div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
+    <input type="text" placeholder="输入并搜索" />
 </div>
 
             
@@ -82,7 +82,16 @@
 <ul class="summary">
     
     
+    
+        
+        <li>
+            <a href="https://rootzhanggb.github.io" target="_blank" class="custom-link">zgb</a>
+        </li>
+    
+    
 
+    
+    <li class="divider"></li>
     
 
     
@@ -93,6 +102,8 @@
             
                 <a href="../">
             
+                    
+                        <b>1.1.</b>
                     
                     介绍
             
@@ -106,6 +117,8 @@
             
                 <span>
             
+                    
+                        <b>1.2.</b>
                     
                     [1. linux脚本]
             
@@ -121,6 +134,8 @@
                 <a href="../chapter1/docker.html">
             
                     
+                        <b>1.2.1.</b>
+                    
                     1.1 docker安装
             
                 </a>
@@ -133,6 +148,8 @@
             
                 <a href="../chapter1/mysql.html">
             
+                    
+                        <b>1.2.2.</b>
                     
                     1.2 mysql安装
             
@@ -147,7 +164,39 @@
                 <a href="../chapter1/vsftpd.html">
             
                     
-                    1.1 vsftpd安装
+                        <b>1.2.3.</b>
+                    
+                    1.3 vsftpd安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../chapter1/mongodb.html">
+            
+                <a href="../chapter1/mongodb.html">
+            
+                    
+                        <b>1.2.4.</b>
+                    
+                    1.4 mongodb安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../chapter1/redis.html">
+            
+                <a href="../chapter1/redis.html">
+            
+                    
+                        <b>1.2.5.</b>
+                    
+                    1.5 redis安装
             
                 </a>
             
@@ -165,6 +214,8 @@
                 <span>
             
                     
+                        <b>1.3.</b>
+                    
                     [2. python脚本]
             
                 </span>
@@ -178,6 +229,8 @@
             
                 <a href="../chapter2/kafka-monitor.html">
             
+                    
+                        <b>1.3.1.</b>
                     
                     2.1 kafka监控
             
@@ -197,6 +250,8 @@
                 <span>
             
                     
+                        <b>1.4.</b>
+                    
                     [3. java]
             
                 </span>
@@ -209,6 +264,8 @@
             
                 <span>
             
+                    
+                        <b>1.5.</b>
                     
                     [4. 数据库]
             
@@ -223,7 +280,9 @@
                 <span>
             
                     
-                    [5. 容器公共服务]
+                        <b>1.6.</b>
+                    
+                    [5. 公共服务容器化]
             
                 </span>
             
@@ -236,6 +295,8 @@
             
                 <a href="redis.html">
             
+                    
+                        <b>1.6.1.</b>
                     
                     5.1 redis容器化
             
@@ -250,6 +311,8 @@
                 <a href="rabbitmq.html">
             
                     
+                        <b>1.6.2.</b>
+                    
                     5.2 rabbitmq容器化
             
                 </a>
@@ -263,6 +326,8 @@
                 <a href="mongodb.html">
             
                     
+                        <b>1.6.3.</b>
+                    
                     5.3 mongodb容器化
             
                 </a>
@@ -275,6 +340,8 @@
             
                 <a href="mysql.html">
             
+                    
+                        <b>1.6.4.</b>
                     
                     5.4 mysql容器化
             
@@ -294,6 +361,8 @@
                 <a href="../end/">
             
                     
+                        <b>1.7.</b>
+                    
                     结束
             
                 </a>
@@ -309,7 +378,7 @@
 
     <li>
         <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
+            本书使用 GitBook 发布
         </a>
     </li>
 </ul>
@@ -353,10 +422,27 @@
 </code></pre>
 <p><strong>k8s&#x90E8;&#x7F72;</strong></p>
 <pre><code class="lang-yaml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">kind:</span> PersistentVolumeClaim
+<span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> rabbitmq-lv-claim
+<span class="hljs-attr">  namespace:</span> ykfw-public
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> rabbitmq-alone
+<span class="hljs-attr">  annotations:</span>
+    volume.beta.kubernetes.io/storage-class: <span class="hljs-string">&quot;managed-nfs-storage&quot;</span>
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  accessModes:</span>
+<span class="hljs-bullet">    -</span> ReadWriteMany
+<span class="hljs-attr">  resources:</span>
+<span class="hljs-attr">    requests:</span>
+<span class="hljs-attr">      storage:</span> <span class="hljs-number">2</span>Gi
+<span class="hljs-meta">---</span>
 <span class="hljs-attr">apiVersion:</span> extensions/v1beta1
 <span class="hljs-attr">kind:</span> Deployment
 <span class="hljs-attr">metadata:</span>
 <span class="hljs-attr">  name:</span> rabbitmq-alone
+<span class="hljs-attr">  namespace:</span> ykfw-public
 <span class="hljs-attr">spec:</span>
 <span class="hljs-attr">  replicas:</span> <span class="hljs-number">1</span>
 <span class="hljs-attr">  template:</span>
@@ -365,12 +451,23 @@
 <span class="hljs-attr">        app:</span> rabbitmq-alone
 <span class="hljs-attr">    spec:</span>
 <span class="hljs-attr">      hostname:</span> rabbitmq
+<span class="hljs-attr">      imagePullSecrets:</span> 
+<span class="hljs-attr">      - name:</span> harbor-default
+<span class="hljs-attr">      nodeSelector:</span> 
+         physical.group: app-share
 <span class="hljs-attr">      containers:</span>
 <span class="hljs-attr">      - name:</span> rabbitmq-alone
 <span class="hljs-attr">        image:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.14</span><span class="hljs-number">.66</span>/public/rabbitmq:<span class="hljs-number">3</span>-management
 <span class="hljs-attr">        imagePullPolicy:</span> IfNotPresent
         <span class="hljs-comment"># command: [&quot;/usr/local/bin/rabbitmq-server&quot;]</span>
         <span class="hljs-comment"># args: [&quot;/rabbitmq-conf/rabbitmq.conf&quot;]</span>
+<span class="hljs-attr">        resources:</span> <span class="hljs-comment"># &#x8D44;&#x6E90;&#x9650;&#x5236;&#x548C;&#x8BF7;&#x6C42;</span>
+<span class="hljs-attr">          limits:</span> <span class="hljs-comment"># &#x5BB9;&#x5668;&#x4F7F;&#x7528;&#x7684;&#x6700;&#x5927;&#x8D44;&#x6E90;&#x9650;&#x5236;</span>
+<span class="hljs-attr">            cpu:</span> <span class="hljs-number">1048</span>m
+<span class="hljs-attr">            memory:</span> <span class="hljs-number">1</span>Gi
+<span class="hljs-attr">        requests:</span> <span class="hljs-comment"># &#x5BB9;&#x5668;&#x542F;&#x52A8;&#x65F6;&#x8D44;&#x6E90;&#x8BF7;&#x6C42;</span>
+<span class="hljs-attr">            cpu:</span> <span class="hljs-number">100</span>m
+<span class="hljs-attr">            memory:</span> <span class="hljs-number">100</span>Mi
 <span class="hljs-attr">        ports:</span>
 <span class="hljs-attr">        - containerPort:</span> <span class="hljs-number">5672</span>
 <span class="hljs-attr">          name:</span> tcp
@@ -381,18 +478,21 @@
 <span class="hljs-attr">          value:</span> admin
 <span class="hljs-attr">        - name:</span> RABBITMQ_DEFAULT_PASS
 <span class="hljs-attr">          value:</span> admin
-        <span class="hljs-comment"># volumeMounts:</span>
-        <span class="hljs-comment"># - name: rabbitmq-nfs-storage</span>
-          <span class="hljs-comment"># mountPath: /data</span>
-      <span class="hljs-comment"># volumes:</span>
-      <span class="hljs-comment"># - name: rabbitmq-nfs-storage</span>
-        <span class="hljs-comment"># persistentVolumeClaim:</span>
-          <span class="hljs-comment"># claimName: rabbitmq-lv-claim</span>
+<span class="hljs-attr">        - name:</span> TZ
+<span class="hljs-attr">          value:</span> <span class="hljs-string">&quot;Asia/Shanghai&quot;</span>
+<span class="hljs-attr">        volumeMounts:</span>
+<span class="hljs-attr">        - name:</span> rabbitmq-nfs-storage
+<span class="hljs-attr">          mountPath:</span> /var/lib/rabbitmq/
+<span class="hljs-attr">      volumes:</span>
+<span class="hljs-attr">      - name:</span> rabbitmq-nfs-storage
+<span class="hljs-attr">        persistentVolumeClaim:</span>
+<span class="hljs-attr">          claimName:</span> rabbitmq-lv-claim
 <span class="hljs-meta">---</span>
 <span class="hljs-attr">apiVersion:</span> v1
 <span class="hljs-attr">kind:</span> Service
 <span class="hljs-attr">metadata:</span>
 <span class="hljs-attr">  name:</span> rabbitmq-service
+<span class="hljs-attr">  namespace:</span> ykfw-public
 <span class="hljs-attr">  labels:</span>
 <span class="hljs-attr">    app:</span> rabbitmq-alone
 <span class="hljs-attr">spec:</span>
@@ -407,21 +507,6 @@
 <span class="hljs-attr">  selector:</span>
 <span class="hljs-attr">    app:</span> rabbitmq-alone
 <span class="hljs-comment">#   clusterIP: None</span>
-<span class="hljs-comment"># ---</span>
-<span class="hljs-comment"># kind: PersistentVolumeClaim</span>
-<span class="hljs-comment"># apiVersion: v1</span>
-<span class="hljs-comment"># metadata:</span>
-  <span class="hljs-comment"># name: rabbitmq-lv-claim</span>
-  <span class="hljs-comment"># labels:</span>
-    <span class="hljs-comment"># app: rabbitmq-alone</span>
-  <span class="hljs-comment"># annotations:</span>
-    <span class="hljs-comment"># volume.beta.kubernetes.io/storage-class: &quot;managed-nfs-storage&quot;</span>
-<span class="hljs-comment"># spec:</span>
-  <span class="hljs-comment"># accessModes:</span>
-    <span class="hljs-comment"># - ReadWriteMany</span>
-  <span class="hljs-comment"># resources:</span>
-    <span class="hljs-comment"># requests:</span>
-      <span class="hljs-comment"># storage: 2Gi</span>
 </code></pre>
 <p><strong>docker&#x90E8;&#x7F72;</strong></p>
 
@@ -467,7 +552,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5.2 rabbitmq容器化","level":"1.6.2","depth":2,"next":{"title":"5.3 mongodb容器化","level":"1.6.3","depth":2,"path":"chapter5/mongodb.md","ref":"chapter5/mongodb.md","articles":[]},"previous":{"title":"5.1 redis容器化","level":"1.6.1","depth":2,"path":"chapter5/redis.md","ref":"chapter5/redis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/rabbitmq.md","mtime":"2018-05-18T08:55:32.814Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-21T05:57:45.583Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5.2 rabbitmq容器化","level":"1.6.2","depth":2,"next":{"title":"5.3 mongodb容器化","level":"1.6.3","depth":2,"path":"chapter5/mongodb.md","ref":"chapter5/mongodb.md","articles":[]},"previous":{"title":"5.1 redis容器化","level":"1.6.1","depth":2,"path":"chapter5/redis.md","ref":"chapter5/redis.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github","editlink","theme-default"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"github":{"url":"https://github.com/rootzhanggb/rootzhanggb.github.io"},"editlink":{"label":"编辑本页","multilingual":false,"base":"https://github.com/rootzhanggb/rootzhanggb.github.io/blob/master/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","author":"zgb","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"zgb Handbook","language":"zh-hans","links":{"sidebar":{"zgb":"https://rootzhanggb.github.io"}},"gitbook":"*","description":"z张广彬"},"file":{"path":"chapter5/rabbitmq.md","mtime":"2018-05-24T06:45:58.035Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-24T07:34:04.477Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -475,6 +560,14 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

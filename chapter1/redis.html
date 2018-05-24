@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>5.3 mongodb容器化 · zgb Handbook</title>
+        <title>1.5 redis安装 · zgb Handbook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="mysql.html" />
     
-    
-    <link rel="prev" href="rabbitmq.html" />
+    <link rel="prev" href="mongodb.html" />
     
 
     </head>
@@ -129,9 +127,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="../chapter1/docker.html">
+        <li class="chapter " data-level="1.2.1" data-path="docker.html">
             
-                <a href="../chapter1/docker.html">
+                <a href="docker.html">
             
                     
                         <b>1.2.1.</b>
@@ -144,9 +142,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="../chapter1/mysql.html">
+        <li class="chapter " data-level="1.2.2" data-path="mysql.html">
             
-                <a href="../chapter1/mysql.html">
+                <a href="mysql.html">
             
                     
                         <b>1.2.2.</b>
@@ -159,9 +157,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3" data-path="../chapter1/vsftpd.html">
+        <li class="chapter " data-level="1.2.3" data-path="vsftpd.html">
             
-                <a href="../chapter1/vsftpd.html">
+                <a href="vsftpd.html">
             
                     
                         <b>1.2.3.</b>
@@ -174,9 +172,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.4" data-path="../chapter1/mongodb.html">
+        <li class="chapter " data-level="1.2.4" data-path="mongodb.html">
             
-                <a href="../chapter1/mongodb.html">
+                <a href="mongodb.html">
             
                     
                         <b>1.2.4.</b>
@@ -189,9 +187,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.5" data-path="../chapter1/redis.html">
+        <li class="chapter active" data-level="1.2.5" data-path="redis.html">
             
-                <a href="../chapter1/redis.html">
+                <a href="redis.html">
             
                     
                         <b>1.2.5.</b>
@@ -291,9 +289,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="redis.html">
+        <li class="chapter " data-level="1.6.1" data-path="../chapter5/redis.html">
             
-                <a href="redis.html">
+                <a href="../chapter5/redis.html">
             
                     
                         <b>1.6.1.</b>
@@ -306,9 +304,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="rabbitmq.html">
+        <li class="chapter " data-level="1.6.2" data-path="../chapter5/rabbitmq.html">
             
-                <a href="rabbitmq.html">
+                <a href="../chapter5/rabbitmq.html">
             
                     
                         <b>1.6.2.</b>
@@ -321,9 +319,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.3" data-path="mongodb.html">
+        <li class="chapter " data-level="1.6.3" data-path="../chapter5/mongodb.html">
             
-                <a href="mongodb.html">
+                <a href="../chapter5/mongodb.html">
             
                     
                         <b>1.6.3.</b>
@@ -336,9 +334,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="mysql.html">
+        <li class="chapter " data-level="1.6.4" data-path="../chapter5/mysql.html">
             
-                <a href="mysql.html">
+                <a href="../chapter5/mysql.html">
             
                     
                         <b>1.6.4.</b>
@@ -401,7 +399,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >5.3 mongodb容器化</a>
+        <a href=".." >1.5 redis安装</a>
     </h1>
 </div>
 
@@ -416,91 +414,79 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="53-mongodb&#x5BB9;&#x5668;&#x5316;">5.3 mongodb&#x5BB9;&#x5668;&#x5316;</h1>
-<h1 id="52-rabbitmq&#x5BB9;&#x5668;&#x5316;">5.2 rabbitmq&#x5BB9;&#x5668;&#x5316;</h1>
-<p><strong>docker&#x90E8;&#x7F72;</strong></p>
-<pre><code class="lang-shell">mkdir -p /mnt/mongo/db &amp;&amp;\
-docker run -p 27017:27017 -v /mnt/mongo/db:/data/db -d mongo:3.2 mongo:3.2.20-jessie
-</code></pre>
-<p>&#x547D;&#x4EE4;&#x8BF4;&#x660E;&#xFF1A;</p>
-<p>-p 27017:27017 :&#x5C06;&#x5BB9;&#x5668;&#x7684;27017 &#x7AEF;&#x53E3;&#x6620;&#x5C04;&#x5230;&#x4E3B;&#x673A;&#x7684;27017 &#x7AEF;&#x53E3;</p>
-<p>-v $PWD/db:/data/db :&#x5C06;&#x4E3B;&#x673A;&#x4E2D;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x7684;db&#x6302;&#x8F7D;&#x5230;&#x5BB9;&#x5668;&#x7684;/data/db&#xFF0C;&#x4F5C;&#x4E3A;mongo&#x6570;&#x636E;&#x5B58;&#x50A8;&#x76EE;&#x5F55;</p>
-<p><strong>k8s&#x90E8;&#x7F72;</strong></p>
-<pre><code class="lang-yaml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">apiVersion:</span> v1
-<span class="hljs-attr">kind:</span> Service
-<span class="hljs-attr">metadata:</span>
-<span class="hljs-attr">  name:</span> mongodb-service
-<span class="hljs-attr">  namespace:</span> ykfw-public
-<span class="hljs-attr">  labels:</span>
-<span class="hljs-attr">    app:</span> mongodb-alone
-<span class="hljs-attr">spec:</span>
-<span class="hljs-attr">  type:</span> NodePort
-<span class="hljs-attr">  ports:</span>
-<span class="hljs-attr">    - port:</span> <span class="hljs-number">27017</span>
-<span class="hljs-attr">      nodePort:</span> <span class="hljs-number">27017</span>
-<span class="hljs-attr">  selector:</span>
-<span class="hljs-attr">    app:</span> mongodb-alone
-<span class="hljs-comment">#   clusterIP: None</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">kind:</span> PersistentVolumeClaim
-<span class="hljs-attr">apiVersion:</span> v1
-<span class="hljs-attr">metadata:</span>
-<span class="hljs-attr">  name:</span> mongodb-lv-claim
-<span class="hljs-attr">  namespace:</span> ykfw-public
-<span class="hljs-attr">  labels:</span>
-<span class="hljs-attr">    app:</span> mongodb-alone
-<span class="hljs-attr">  annotations:</span>
-    volume.beta.kubernetes.io/storage-class: <span class="hljs-string">&quot;managed-nfs-storage&quot;</span>
-<span class="hljs-attr">spec:</span>
-<span class="hljs-attr">  accessModes:</span>
-<span class="hljs-bullet">    -</span> ReadWriteMany
-<span class="hljs-attr">  resources:</span>
-<span class="hljs-attr">    requests:</span>
-<span class="hljs-attr">      storage:</span> <span class="hljs-number">2</span>Gi
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">apiVersion:</span> extensions/v1beta1
-<span class="hljs-attr">kind:</span> Deployment
-<span class="hljs-attr">metadata:</span>
-<span class="hljs-attr">  name:</span> mongodb-alone
-<span class="hljs-attr">  namespace:</span> ykfw-public
-<span class="hljs-attr">spec:</span>
-<span class="hljs-attr">  replicas:</span> <span class="hljs-number">1</span>
-<span class="hljs-attr">  template:</span>
-<span class="hljs-attr">    metadata:</span>
-<span class="hljs-attr">      labels:</span>
-<span class="hljs-attr">        app:</span> mongodb-alone
-<span class="hljs-attr">    spec:</span>
-<span class="hljs-attr">      hostname:</span> mongodb
-<span class="hljs-attr">      imagePullSecrets:</span> 
-<span class="hljs-attr">      - name:</span> harbor-default
-<span class="hljs-attr">      nodeSelector:</span> 
-         physical.group: app-share
-<span class="hljs-attr">      containers:</span>
-<span class="hljs-attr">      - name:</span> mongodb-alone
-<span class="hljs-attr">        image:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.14</span><span class="hljs-number">.66</span>/public/mongo:<span class="hljs-number">3.2</span><span class="hljs-number">.20</span>-jessie
-<span class="hljs-attr">        imagePullPolicy:</span> IfNotPresent
-        <span class="hljs-comment"># command: [&quot;/usr/local/bin/mongodb-server&quot;]</span>
-        <span class="hljs-comment"># args: [&quot;/mongodb-conf/mongodb.conf&quot;]</span>
-<span class="hljs-attr">        env:</span>
-<span class="hljs-attr">        - name:</span> TZ
-<span class="hljs-attr">          value:</span> <span class="hljs-string">&quot;Asia/Shanghai&quot;</span>
-<span class="hljs-attr">        resources:</span> <span class="hljs-comment"># &#x8D44;&#x6E90;&#x9650;&#x5236;&#x548C;&#x8BF7;&#x6C42;</span>
-<span class="hljs-attr">          limits:</span> <span class="hljs-comment"># &#x5BB9;&#x5668;&#x4F7F;&#x7528;&#x7684;&#x6700;&#x5927;&#x8D44;&#x6E90;&#x9650;&#x5236;</span>
-<span class="hljs-attr">            cpu:</span> <span class="hljs-number">1048</span>m
-<span class="hljs-attr">            memory:</span> <span class="hljs-number">1</span>Gi
-<span class="hljs-attr">        requests:</span> <span class="hljs-comment"># &#x5BB9;&#x5668;&#x542F;&#x52A8;&#x65F6;&#x8D44;&#x6E90;&#x8BF7;&#x6C42;</span>
-<span class="hljs-attr">            cpu:</span> <span class="hljs-number">100</span>m
-<span class="hljs-attr">            memory:</span> <span class="hljs-number">100</span>Mi
-<span class="hljs-attr">        ports:</span>
-<span class="hljs-attr">        - containerPort:</span> <span class="hljs-number">27017</span>
-<span class="hljs-attr">        volumeMounts:</span>
-<span class="hljs-attr">        - name:</span> mongodb-nfs-storage
-<span class="hljs-attr">          mountPath:</span> /data/db
-<span class="hljs-attr">      volumes:</span>
-<span class="hljs-attr">      - name:</span> mongodb-nfs-storage
-<span class="hljs-attr">        persistentVolumeClaim:</span>
-<span class="hljs-attr">          claimName:</span> mongodb-lv-claim
+                                <h1 id="15-redis&#x5B89;&#x88C5;">1.5 redis&#x5B89;&#x88C5;</h1>
+<p><strong>redis&#x5B89;&#x88C5;shell&#x811A;&#x672C;&#x6574;&#x7406;</strong></p>
+<pre><code class="lang-shell">#!/bin/bash
+#&#x5355;&#x673A;redis
+datedir=&quot;/mnt&quot;
+mkdir -p $datedir/redis &amp;&amp;cd $datedir/redis
+wget http://download.redis.io/releases/redis-3.2.11.tar.gz
+tar xzf redis-3.2.11.tar.gz
+cd redis-3.2.11
+make
+cp src/redis-server src/redis-cli /usr/local/bin/
+chmod -R a+x /usr/local/bin/*
+cat &gt;$datedir/redis/redis.conf&lt;&lt;eof
+#bind 10.100.11.171
+protected-mode no
+port 6379
+tcp-backlog 511
+timeout 0
+tcp-keepalive 300
+daemonize yes
+supervised no
+pidfile $datedir/redis/redis.pid
+loglevel notice
+logfile &quot;$datedir/redis/redis.log&quot;
+databases 16
+save 900 1
+save 300 10
+save 60 10000
+stop-writes-on-bgsave-error yes
+rdbcompression yes
+rdbchecksum yes
+dbfilename dump.rdb
+dir $datedir/redis/
+masterauth qwert12345
+slave-serve-stale-data yes
+slave-read-only yes
+repl-diskless-sync no
+repl-diskless-sync-delay 5
+repl-disable-tcp-nodelay no
+slave-priority 100
+#requirepass yk-2018.com
+appendonly yes
+appendfilename &quot;appendonly.aof&quot;
+appendfsync everysec
+no-appendfsync-on-rewrite no
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+aof-load-truncated yes
+lua-time-limit 5000
+cluster-enabled no
+cluster-config-file nodes.conf
+cluster-node-timeout 15000
+cluster-require-full-coverage no
+slowlog-log-slower-than 10000
+slowlog-max-len 128
+latency-monitor-threshold 0
+notify-keyspace-events &quot;&quot;
+hash-max-ziplist-entries 512
+hash-max-ziplist-value 64
+list-max-ziplist-size -2
+list-compress-depth 0
+set-max-intset-entries 512
+zset-max-ziplist-entries 128
+zset-max-ziplist-value 64
+hll-sparse-max-bytes 3000
+activerehashing yes
+client-output-buffer-limit normal 0 0 0
+client-output-buffer-limit slave 256mb 64mb 60
+client-output-buffer-limit pubsub 32mb 8mb 60
+hz 10
+eof
+#&#x542F;&#x52A8;
+nohup redis-server $datedir/redis/redis.conf &amp;
 </code></pre>
 
                                 
@@ -529,14 +515,10 @@ docker run -p 27017:27017 -v /mnt/mongo/db:/data/db -d mongo:3.2 mongo:3.2.20-je
 
             
                 
-                <a href="rabbitmq.html" class="navigation navigation-prev " aria-label="Previous page: 5.2 rabbitmq容器化">
+                <a href="mongodb.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 1.4 mongodb安装">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="mysql.html" class="navigation navigation-next " aria-label="Next page: 5.4 mysql容器化">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -545,7 +527,7 @@ docker run -p 27017:27017 -v /mnt/mongo/db:/data/db -d mongo:3.2 mongo:3.2.20-je
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5.3 mongodb容器化","level":"1.6.3","depth":2,"next":{"title":"5.4 mysql容器化","level":"1.6.4","depth":2,"path":"chapter5/mysql.md","ref":"chapter5/mysql.md","articles":[]},"previous":{"title":"5.2 rabbitmq容器化","level":"1.6.2","depth":2,"path":"chapter5/rabbitmq.md","ref":"chapter5/rabbitmq.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github","editlink","theme-default"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"github":{"url":"https://github.com/rootzhanggb/rootzhanggb.github.io"},"editlink":{"label":"编辑本页","multilingual":false,"base":"https://github.com/rootzhanggb/rootzhanggb.github.io/blob/master/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","author":"zgb","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"zgb Handbook","language":"zh-hans","links":{"sidebar":{"zgb":"https://rootzhanggb.github.io"}},"gitbook":"*","description":"z张广彬"},"file":{"path":"chapter5/mongodb.md","mtime":"2018-05-24T06:46:12.246Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-24T07:34:04.477Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.5 redis安装","level":"1.2.5","depth":2,"next":{"title":"[2. python脚本]","level":"1.3","depth":1,"ref":"","articles":[{"title":"2.1 kafka监控","level":"1.3.1","depth":2,"path":"chapter2/kafka-monitor.md","ref":"chapter2/kafka-monitor.md","articles":[]}]},"previous":{"title":"1.4 mongodb安装","level":"1.2.4","depth":2,"path":"chapter1/mongodb.md","ref":"chapter1/mongodb.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github","editlink","theme-default"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"github":{"url":"https://github.com/rootzhanggb/rootzhanggb.github.io"},"editlink":{"label":"编辑本页","multilingual":false,"base":"https://github.com/rootzhanggb/rootzhanggb.github.io/blob/master/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","author":"zgb","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"zgb Handbook","language":"zh-hans","links":{"sidebar":{"zgb":"https://rootzhanggb.github.io"}},"gitbook":"*","description":"z张广彬"},"file":{"path":"chapter1/redis.md","mtime":"2018-05-24T07:31:17.265Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-24T07:34:04.477Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
