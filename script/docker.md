@@ -29,4 +29,4 @@ Built: Tue Jun 27 02:21:36 2017
 OS/Arch: linux/amd64
 
 ```
-
+**离线安装**
