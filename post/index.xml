@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on XIAO BIN</title>
+    <link>http://rootzhanggb.github.io/post/</link>
+    <description>Recent content in Posts on XIAO BIN</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>312768277@11.io (张广彬)</managingEditor>
+    <webMaster>312768277@11.io (张广彬)</webMaster>
+    <lastBuildDate>Tue, 29 May 2018 13:47:06 +0800</lastBuildDate>
+    
+	<atom:link href="http://rootzhanggb.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python</title>
+      <link>http://rootzhanggb.github.io/post/python/</link>
+      <pubDate>Tue, 29 May 2018 13:47:06 +0800</pubDate>
+      <author>312768277@11.io (张广彬)</author>
+      <guid>http://rootzhanggb.github.io/post/python/</guid>
+      <description>python实例手册 #encoding:utf8 设定编码-支持中文 0 说明 手册制作: 雪松 littlepy www.51reboot.com 更新日期: 2016-01-21 欢迎系统运维加入Q群: 198173206 # 加群请回答问题 欢迎运维开发加入Q群: 365534424</description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>http://rootzhanggb.github.io/post/shell/</link>
+      <pubDate>Tue, 29 May 2018 13:36:22 +0800</pubDate>
+      <author>312768277@11.io (张广彬)</author>
+      <guid>http://rootzhanggb.github.io/post/shell/</guid>
+      <description>shell实例手册 0 说明{ 手册制作: 雪松 更新日期: 2016-06-17 欢迎系统运维加入Q群: 198173206 # 加群请回答问题 欢迎运维开发加入Q群: 365534424 # 不定期技术分享 请使用&amp;</description>
+    </item>
+    
+    <item>
+      <title>First</title>
+      <link>http://rootzhanggb.github.io/post/first/</link>
+      <pubDate>Tue, 22 May 2018 13:50:17 +0800</pubDate>
+      <author>312768277@11.io (张广彬)</author>
+      <guid>http://rootzhanggb.github.io/post/first/</guid>
+      <description>测试</description>
+    </item>
+    
+  </channel>
+</rss>
