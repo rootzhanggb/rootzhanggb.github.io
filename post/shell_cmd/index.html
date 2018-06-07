@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>常用的shell命令</title>
+  <meta property="og:title" content="常用的shell命令" />
+  <meta name="twitter:title" content="常用的shell命令" />
+  <meta name="description" content="常用的shell命令 常用命令 目录(?)[&#43;] 用到的时候措手不及,不用的时候一大坨. 基于这个原因,打算重整旗鼓,经常用到的命令和栗子整理如下 像">
+  <meta property="og:description" content="常用的shell命令 常用命令 目录(?)[&#43;] 用到的时候措手不及,不用的时候一大坨. 基于这个原因,打算重整旗鼓,经常用到的命令和栗子整理如下 像">
+  <meta name="twitter:description" content="常用的shell命令 常用命令 目录(?)[&#43;] 用到的时候措手不及,不用的时候一大坨. 基于这个原因,打算重整旗鼓,经常用到的命令和栗子整理如下 像">
+  <meta name="author" content="张广彬"/>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://rootzhanggb.github.io/post/shell_cmd/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="XIAO BIN" />
+
+  <meta name="generator" content="Hugo 0.40.3" />
+  <link rel="canonical" href="https://rootzhanggb.github.io/post/shell_cmd/" />
+  <link rel="alternate" href="https://rootzhanggb.github.io/index.xml" type="application/rss+xml" title="XIAO BIN">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://rootzhanggb.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://rootzhanggb.github.io/css/syntax.css" /><link rel="stylesheet" href="https://rootzhanggb.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://rootzhanggb.github.io">XIAO BIN</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                  <a href="/categories/kubernetes">kubernetes</a>
+                
+                  <a href="/categories/devops">Devops</a>
+                
+                  <a href="/categories/github">Github</a>
+                
+                  <a href="/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                  <a href="/kubernetes">Kubernetes</a>
+                
+                  <a href="/notebook">notebook</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>常用的shell命令</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 7, 2018
+  
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><strong>常用的shell命令</strong></p>
+
+<pre><code class="language-shell">常用命令
+目录(?)[+]
+
+
+用到的时候措手不及,不用的时候一大坨. 基于这个原因,打算重整旗鼓,经常用到的命令和栗子整理如下
+
+像是割草一样,我不信搞不彻底.搞不顺手.
+
+find+xargs/sed&amp;sed后向引用+awk多匹配符+过滤行绝招总结&amp;&amp;产生随机数
+
+sort-uniq
+awk运算-解决企业统计pv/ip问题
+
+1.mkdir
+2.ls
+    -l
+    -d 显示目录
+    -F 给文件夹结尾加/标识
+    -a 以.开头的都是隐藏文件
+    -rt 按照修改时间倒序排列(最新修改的在最下)
+
+ls -lrth
+3.cd
+4.pwd
+5.touch
+6.vi
+7.vim
+8.echo
+    配合 &gt; &gt;&gt;
+    -n 不换行
+    -e 内容携带转义(\n回车 \t tab) 
+
+- 不换行
+[root@n6 ~]# echo -n '123'
+123[root@n6 ~]# 
+
+- 让\n等转义
+默认是:
+[root@n6 ~]# echo 'mao\ntai'
+mao\ntai
+
+加-e后
+[root@n6 ~]# echo -e 'mao\ntai'
+mao
+tai
+
+9.cat
+    -n 显示行号
+10.xargs: http://man.linuxde.net/xargs
+   -n max-args     多少个一组,默认是1
+    -i [replace-str] 后向引用
+
+- 用法展示
+echo stu{1..20}|xargs -n 2 &gt; 2.md
+
+- 单行输出(默认-n1)
+cat test.txt
+a b c d e f g
+h i j k l m n
+o p q
+r s t
+u v w x y z
+
+cat test.txt | xargs
+a b c d e f g h i j k l m n o p q r s t u v w x y z
+
+
+cat test.txt | xargs -n3
+a b c
+d e f
+g h i
+j k l
+m n o
+
+- 查找替换(处理木马)
+    find . -type f|xargs sed -i 's#&lt;script type=&quot;text/javascript&quot; src=http://%4%66ccxxx&amp;W@#@$@#$@$%@#$SFADS@#$&gt;&lt;/script&gt;##g';
+
+- 在移动和重命名时候才需要 -i,否则不需要
+    find . -type f -name '1.md'|xargs -i mv {} /tmp/
+    find . -type f -name '1.md'|xargs -i mv {} /tmp/{}.bak
+11.cp
+    -a 等价于-pbr
+    -f(force)
+    -r(recursive)递归
+12.rm
+    1.以tmp为回收站
+    2.先cd,后find . -name &quot;&quot;|xargs rm -f
+13.mv
+14.find:  http://www.cnblogs.com/iiiiher/p/8507948.html
+    -type f(file) d(directory) c(character) b(block) s(socket) l(link)
+    -name
+    -size
+    -mtime 修改时间: +7(超过7天) 7 -7(7天内)
+    -maxdepth 查找深度
+    ! 取反, -a(and)交集(默认), -o or并集
+    -exec
+
+- 移动或者重命名时xargs 需要-i后向引用.
+        find . -type f -name '1.md'|xargs -i mv {} /tmp/
+- 删除
+        find . -type f -mtime +7 |xargs rm -f
+- 删除
+        find . -type f -mtime +7 -exec rm -f {} \;
+15.grep:三剑客老三
+    -i  不区分大小写
+    -n  对匹配到的内容显示行号
+    -v 排除: 生产监控进程: ps -ef|grep &quot;/sshd&quot;|grep -v &quot;grep&quot;
+    -E 等价于egrep '1|2'
+    -o  只显示匹配到的内容
+    -P  使用perl正则
+    -ABC
+
+栗子:
+- 过滤ip(注意192. 的点要转义)
+[root@n1 ~]# ifconfig eth0|grep -oP &quot;([0-9]{1,3}\.){3}([0-9]{1,3})&quot;
+192.168.2.11
+255.255.255.0
+192.168.2.255
+
+- 优化启动项
+[root@n6 ~]# chkconfig --list|grep -E &quot;rsyslog|sshd|network|crond|sysstat&quot; |awk '{print &quot;chkconfig&quot;,$1,&quot;on&quot;}'
+chkconfig crond on
+chkconfig network on
+chkconfig rsyslog on
+chkconfig sshd on
+chkconfig sysstat on
+
+- 精简nginx配置
+egrep -v '^$|#' nginx.conf.default &gt; nginx.conf
+21.sed
+    -n 取消默认输出,仅输出匹配想要的
+    -p 打印,  sed -n'20'p a.log; sed -n '20,30'p a.log
+              过滤功能(正则):sed -n '/^d/p'
+    g与s联合使用,表示替换: sed -i 's#maotai#maotai#g' a.log #是分隔符
+
+    sed过滤功能:
+        ls -l|sed -n '/^d/p'
+        ls -l|sed -n '/\/$/p'
+
+    过滤文件权限:stat maotai.txt |sed -nr '4s#^.*\(0(.*)/-.*$#\1#gp'
+    过滤ip: ifconfig eth0|sed -nr '2s#^.*net (.*)  net.*$#\1#gp'
+
+栗子:
+sed 后向引用是一个绝招
+22.awk #过滤/输出内容,一门语言.
+        NR 行号: awk 'NR&gt;30 &amp;&amp; NR&lt;40'
+                awk 'NR&gt;30 &amp;&amp; NR&lt;40 {print $2}' m.txt
+        $1 第一列 $2第二列 $0整个行:
+                awk '{print $1,$2}'
+                awk '{print $1&quot;#&quot;$2}'
+                awk '{if($2&gt;1) print$0}'
+                cat svc.txt|grep -E &quot;rsyslog|sshd|network|crond|sysstat&quot; |awk '{print &quot;chkconfig&quot;,$1,&quot;on&quot;}'
+
+        显示行号:
+            awk '{print NR,$0}'
+        过滤功能(正则): 正则匹配: awk '/^d/'
+            (过滤目录)ls -l|awk '/^d/'
+            (过滤目录)ls -l|awk '/\/$/'
+        -F 分隔符 ,以多个分割符分割 awk -F '[: ]+'
+            过滤文件权限: stat maotai.txt |sed -nr '4s#^.*\(0(.*)/-.*$#\1#gp'
+            过滤ip: ifconfig eth0|sed -nr '2s#^.*net (.*)  net.*$#\1#gp'
+
+
+栗子:
+awk多分割符是一个绝招
+    过滤权限
+    过滤ip
+awk运算是一个绝招: http://www.cnblogs.com/iiiiher/p/8576537.html
+    - top url
+    - top ip
+    - tcp11种状态统计
+16.head
+    -n5: 显示前5行, 习惯head -5
+    -c:   显示str的多少个字符
+
+栗子
+- 生产随机数
+[root@n1 ~]# echo $RANDOM|md5sum|head -c10
+bcb6293ae4[root@n1 ~]#
+17.tail
+18.alias
+19.unalias
+20.seq  sequence  -s指定分割符
+        seq 开始 结束: seq 1 10
+        seq 开始 公差 结束: seq 1 2 10
+
+栗子:
+[root@n6 ~]# seq 1 2 10
+1
+3
+5
+7
+9
+[root@n6 ~]# 
+
+- 指定空格为分隔符
+[root@n6 ~]# seq -s ' ' 1 2 10
+1 3 5 7 9
+
+- for循环
+for i in `seq 1 10`;do echo $i;done
+
+for i in {1..10};do echo $i;done
+对比{1..10}
+23,useradd
+24,passwd
+非交互式改密码: echo &quot;12345&quot;|passwd --stdin maotai
+25.uname:
+    -m 2or64
+    -r 内核版本
+    -a(all)
+    -n(主机名)
+26.
+27.
+28,init: 切换运行级别,后面接对应级别的数字,例如: init 6重启, init 0关机.
+29.shutdown -h now
+    -r
+    -h
+30.reboot(init 6)重启, shutdown -r now
+last,   对应/var/log/wtmp；    成功登录用户
+lastb,  对应/var/log/btmp；    尝试登录信息
+lastlog,对应/var/log/lastlog； 显示最近登录信息
+
+&gt; /var/log/wtmp
+&gt; /var/log/btmp
+&gt; /var/log/lastlog
+&gt; /root/.bash_history
+
+- 不记录日志
+$ &lt;空格&gt;command
+/etc/profile HISTSIZE=1000设置为0,不记录
+32.dmeseg 显示系统故障信息
+33.ifup和ifdown, 启动停止网卡
+34.nl number lines,显示文件行号
+35.less 和more相反,回车一次一行,空格一次一屏,按b可以一次回退一屏.
+36.more (不常用) 按页一次一屏,不能回退
+37, wc -l(lines) 显示总行数
+        生产监控进程: ps -ef|grep &quot;/sshd&quot;|grep -v &quot;grep&quot;|wc -l
+38,chkconfig 设置开机自启动,默认管理2345级别
+        也可以:/etc/rc.local
+        --list 显示所有
+            --list sshd
+        --level 234
+            chkconfig sshd on/off
+            chkconfig --level 234 sshd on/off
+
+            chkconfig --list        #列出所有的系统服务
+            chkconfig --add httpd        #增加httpd服务
+            chkconfig --del httpd        #删除httpd服务
+            chkconfig --level httpd 2345 on        #设置httpd在运行级别为2、3、4、5的情况下都是on（开启）的状态
+            chkconfig --list        #列出系统所有的服务启动情况
+            chkconfig --list mysqld        #列出mysqld服务设置情况
+            chkconfig --level 35 mysqld on        #设定mysqld在等级3和5为开机运行服务，--level 3
+39,tar 打包 z c v f j x X N p P C --exclude
+      tar -cvf test.tgz test/ --exclude *.txt --exclude dir1
+    参考: http://www.cnblogs.com/iiiiher/p/8571517.html
+40,cut 切割 取列 -d分隔符 -f取列 -c字符
+    -d, --delimiter=DELIM    以...分割
+    -f, --fields=LIST             第几列
+
+    -c, --characters=LIST    取多少个字符 -c2-10
+
+
+栗子: 
+- 取passwd第一列
+cat /etc/passwd|cut -d ':' -f 1
+
+- 取随机数
+[root@n1 ~]# echo $RANDOM|md5sum|cut -c 1-10
+6241129142
+41,tr 逐个字符替换
+
+
+[root@n1 ~]# echo {a..z}|tr '[a-z]' '[A-Z]'
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+42stat 显示文件和文件系统状态(查看文件属性)
+43,file 查看文件的类型
+44.last 查看用户登录信息 /var/log/wtmp数据文件
+45,lastlog 显示最近用户登录信息, /var/log/wtmp
+46,df -h
+47.dumpe2fs 查看文件系统的内部信息(元数据)
+48,tree 查看目录
+    -L     level: Max display depth of the directory tree 取dir多少层
+    -d     List directories only:仅显示目录
+
+栗子:
+- 仅显示一层目录
+tree -Ld 1  /
+51.du  -sh  # 查看文件和目录的大小
+    -h, --human-readable
+    -s, --summarize: display only a total for each argument, 显示大小. -s和-d冲突,同时仅能用一个
+    -d(depth), --max-depth=N: 查看几级目录
+
+栗子:
+- (面试题)仅查看一级的目录大小(结合tree -Ld 1 /)
+du -hd 1 / 
+du -sh /*  #这个也ok
+
+- 查看某个dir大小
+du -sh .
+49,id  查看用户和组的信息
+50,ln  创建软硬链接 -s软(readlink)
+52.which 从PATH变量所在路径查找程序路径
+curl命令
+
+-I --max-time &lt;seconds&gt;  # 超时时间
+-o/--output              # 把输出写到该文件中
+-s/--silent              # 静音模式。不输出任何东西
+-w/--write-out [format]  # 什么输出完成后
+
+
+-A/--user-agent &lt;string&gt;              # 设置用户代理发送给服务器
+-b/--cookie &lt;name=string/file&gt;        # cookie字符串或文件读取位置
+-c/--cookie-jar &lt;file&gt;                # 操作结束后把cookie写入到这个文件中
+-C/--continue-at &lt;offset&gt;             # 断点续转
+-D/--dump-header &lt;file&gt;               # 把header信息写入到该文件中
+-e/--referer                          # 来源网址
+-f/--fail                             # 连接失败时不显示http错误
+-O/--remote-name                      # 把输出写到该文件中，保留远程文件的文件名
+-r/--range &lt;range&gt;                    # 检索来自HTTP/1.1或FTP服务器字节范围
+-T/--upload-file &lt;file&gt;               # 上传文件
+-u/--user &lt;user[:password]&gt;           # 设置服务器的用户和密码
+-x/--proxy &lt;host[:port]&gt;              # 在给定的端口上使用HTTP代理
+-#/--progress-bar                     # 进度条显示当前的传送状态
+
+
+- 获取状态码头部
+curl -I -m 10 -o /dev/null -s -w %{http_code}  cnblogs.com
+wget
+
+- 测速(可以看到三大isp的速度)
+wget -qO- bench.sh | bash
+lsof
+
+lsof -i:80    # 根据端口查进程                      查看80对应的进程名
+lsof -p 32555 # (**ms**)根据进程id查进程打开的文件  查看pid为32555打开的文件
+ipcs - provide information on ipc facilities
+ipcs -m  # (**ms**) 查看共享内存
+[参考](http://topspeedsnail.com/clear-last-linux-login-log/)
+
+history: /etc/profile HISTSIZE=1000设置为1
+  -c clear清空
+  -r 清除当前session的
+  -w 立即更新
+  
+$ &lt;空格&gt;command     # 不记录
+$ cat .bash_history # 删除指定行
+
+last,   对应/var/log/wtmp；    成功登录用户
+lastb,  对应/var/log/btmp；    尝试登录信息
+lastlog,对应/var/log/lastlog； 显示最近登录信息
+
+特殊变量:
+PATH 所有命令的路径所在地,用冒号隔离
+LANG 字符集变量
+第二波预测试:
+1,过滤出已知当前目录下test/中所有一级目录(不含test/下的子目录的子目录,及隐藏目录)
+方法1: 目录是d
+ls -l|grep &quot;^d&quot;
+
+方法2: 给目录加上/
+ls -lF|grep &quot;\/$&quot;
+
+方法3: find找一层,排除当前目录
+[root@n1 test]# find ./ -maxdepth 1 -type d ! -name '.'
+./dir1
+./dir2
+
+方法4: 第二列(硬连接大于1的)
+ls -l|awk '{if($2&gt;1) print$0}'
+
+方法5: sed过滤功能(正则)
+ls -l|sed -n '/^d/p'
+ls -l|sed -n '/\/$/p'
+
+方法6: awk过滤功能(正则)
+ls -l|awk '/^d/'
+ls -l|awk '/\/$/'
+2.查找最新创建的两个文件/
+- 造数据
+for i in `seq 14`;do date -s &quot;2018/01/$i&quot;;touch access_www_$(date +%F).log;done
+[root@n1 test]# find . -type f -mtime +7
+./access_www_2018-01-01.log
+./access_www_2018-01-02.log
+./access_www_2018-01-03.log
+./access_www_2018-01-04.log
+./access_www_2018-01-05.log
+./access_www_2018-01-06.log
+./access_www_2018-01-07.log
+./access_www_2018-01-08.log
+./access_www_2018-01-09.log
+./access_www_2018-01-10.log
+./access_www_2018-01-11.log
+./access_www_2018-01-12.log
+./access_www_2018-01-13.log
+./access_www_2018-01-14.log
+
+
+find . -type f -mtime +7 |xargs rm -f
+
+find . -type f -mtime +7 -exec rm -f {} \;
+
+rm -f `find . -type f -mtime +7`
+3.打印文件内容带行号:
+造数据: echo stu{1..20}.md|xargs -n 1 &gt; nginx.conf
+
+cat -n nginx.conf
+grep -n . nginx.conf
+vim: set nu
+awk '{print NR,$0}' nginx.conf
+第三波测试:
+
+1.取出文件maotai.md文件对应的权限的数字内容,如-rw-r--r--为644,要求使用命令取得644或0644.
+[root@n1 ~]# stat maotai.txt |sed -nr '4s#^.(0(.)/-.*$#\1#gp'
+644
+
+2.显示/tmp/下的一级目录.(不含文件和子目录)
+- 显示/tmp下的文件和目录
+[root@n1 ~]# tree /tmp/
+/tmp/
+├── 1.md
+└── dir1
+    └── dir11
+
+
+- 显示/tmp下的目录
+[root@n1 ~]# tree /tmp/ -d
+/tmp/
+└── dir1
+    └── dir11
+
+- 显示/tmp下的一级目录
+[root@n1 ~]# tree -Ld 1 /tmp/
+/tmp/
+└── dir1
+参考:
+深入浅出linux三剑客之sed必杀技一例
+深入浅出linux三剑客之awk必杀技一例
+
+3.一个目录的硬链链接数是多少?
+- 一个空目录的硬链接数是2
+[root@n1 tmp]# mkdir dir1
+[root@n1 tmp]# ls -ldi dir1/
+1045209 drwxr-xr-x 2 root root 6 Mar  4 16:52 dir1/
+
+[root@n1 tmp]# ls -ldi dir1 dir1/.
+1045209 drwxr-xr-x 2 root root 6 Mar  4 16:52 dir1
+1045209 drwxr-xr-x 2 root root 6 Mar  4 16:52 dir1/.
+
+- 创建一个子目录: 硬连接变成了3
+[root@n1 tmp]# mkdir dir1/dir11
+[root@n1 tmp]# tree dir1/
+dir1/
+└── dir11
+
+[root@n1 tmp]# ls -ldi dir1 dir1/. dir1/dir11/..
+33980567 drwxr-xr-x 3 root root 19 Mar  4 16:51 dir1
+33980567 drwxr-xr-x 3 root root 19 Mar  4 16:51 dir1/.
+33980567 drwxr-xr-x 3 root root 19 Mar  4 16:51 dir1/dir11/.
+
+这是因为:
+1.创建的目录本身为一个硬链接
+2.新木路下隐藏目录(点好)为创建的新目录的一个硬链接,也算一个链接数,因此,硬链接数是2.
+</code></pre>
+
+
+        
+
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://rootzhanggb.github.io/post/python/" data-toggle="tooltip" data-placement="top" title="Python">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:312768277@11.io" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/rootzhanggb" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://rootzhanggb.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://rootzhanggb.github.io">张广彬</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://rootzhanggb.github.io">XIAO BIN</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40.3</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://rootzhanggb.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://rootzhanggb.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
